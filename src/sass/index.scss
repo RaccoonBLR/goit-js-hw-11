@@ -1,2 +1,10 @@
-@import './common';
-@import './example';
+// base
+@import './base/modern-normalize';
+@import './base/reset';
+
+// layouts
+@import './layouts/header';
+
+// components
+@import './components/gallery';
+@import './components/search-form';
