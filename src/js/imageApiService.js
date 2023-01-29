@@ -13,10 +13,10 @@ export default class imagesApiService {
     this.perPage = 40;
   }
 
-  fetchImages() {
+  async fetchImages() {
     const url = `${BASE_URL}?key=${API_KEY}&q=${this.searchQuery}&page=${this.page}&per_page=${this.perPage}&image_type=${imageType}&orientation=${orientation}&safesearch=${safesearch}`;
 
-    return axios.get(url).then(response => response.data);
+    return await axios.get(url);
   }
 
   incrementPage() {

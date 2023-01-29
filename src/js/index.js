@@ -56,12 +56,14 @@ async function onSearch(evt) {
   searchBtn.disable();
   imagesApiService.resetPage();
 
-  await imagesApiService
-    .fetchImages()
-    .then(dataChecker)
-    .then(renderMarkup)
-    .catch(errorProcessing)
-    .finally(searchBtn.enable.bind(searchBtn));
+  try {
+    const { data } = await imagesApiService.fetchImages();
+    renderMarkup(dataChecker(data));
+  } catch (error) {
+    errorProcessing(error);
+  } finally {
+    searchBtn.enable();
+  }
 
   evt.target.reset();
 }
@@ -70,12 +72,14 @@ async function onLoadMore() {
   loadMoreBtn.disable();
   imagesApiService.incrementPage();
 
-  await imagesApiService
-    .fetchImages()
-    .then(renderMarkup)
-    .then(dataChecker)
-    .catch(errorProcessing)
-    .finally(loadMoreBtn.enable.bind(loadMoreBtn));
+  try {
+    const { data } = await imagesApiService.fetchImages();
+    renderMarkup(dataChecker(data));
+  } catch (error) {
+    errorProcessing(error);
+  } finally {
+    loadMoreBtn.enable();
+  }
 
   onLoadMoreScroll();
   lightbox.refresh();
@@ -84,8 +88,6 @@ async function onLoadMore() {
 function renderMarkup(data) {
   refs.gallery.insertAdjacentHTML('beforeend', imageCardTpl(data.hits));
   lightbox.refresh();
-
-  return data;
 }
 
 function errorProcessing(error) {
