@@ -75,14 +75,12 @@ async function onLoadMore() {
   try {
     const { data } = await imagesApiService.fetchImages();
     renderMarkup(dataChecker(data));
+    onLoadMoreScroll();
   } catch (error) {
     errorProcessing(error);
   } finally {
     loadMoreBtn.enable();
   }
-
-  onLoadMoreScroll();
-  lightbox.refresh();
 }
 
 function renderMarkup(data) {
@@ -93,6 +91,7 @@ function renderMarkup(data) {
 function errorProcessing(error) {
   Notify.failure(error.message);
   resetGallery();
+  loadMoreBtn.hide();
 }
 
 function dataChecker(data) {
