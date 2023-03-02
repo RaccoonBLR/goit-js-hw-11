@@ -50,20 +50,21 @@
   font-size: 15px;
 }
 
-.wrapper {
-  display: flex;
-  justify-content: center;
+.container {
+  margin: 0 auto;
 
   padding-bottom: 25px;
 }
 
 .load-more {
+  display: block;
   cursor: pointer;
 
   height: 40px;
 
   padding-left: 16px;
   padding-right: 16px;
+  margin: 0 auto;
 
   transition: box-shadow 0.15s, transform 0.15s;
 
