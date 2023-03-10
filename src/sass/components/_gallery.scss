@@ -1,10 +1,10 @@
 .gallery {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  justify-content: flex-start;
   gap: 20px;
 
-  padding: 25px 0px;
+  padding: 20px;
 }
 
 .gallery-link {
@@ -50,12 +50,6 @@
   font-size: 15px;
 }
 
-.container {
-  margin: 0 auto;
-
-  padding-bottom: 25px;
-}
-
 .load-more {
   display: block;
   cursor: pointer;
@@ -65,6 +59,7 @@
   padding-left: 16px;
   padding-right: 16px;
   margin: 0 auto;
+  margin-bottom: 20px;
 
   transition: box-shadow 0.15s, transform 0.15s;
 
